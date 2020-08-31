@@ -22,7 +22,7 @@ public class ChangeDeliveryDateTest {
         $("[data-test-id='phone'] input").setValue(generator.generatePhone());
         $("[data-test-id='agreement'] .checkbox__box").click();
         $(".button").click();
-        $("[data-test-id='notification']").waitUntil(visible, 15000).shouldHave(text("Успешно! " +
+        $("[data-test-id='success-notification']").waitUntil(visible, 15000).shouldHave(text("Успешно! " +
                 "Встреча успешно забронирована на " + date));
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("[data-test-id='date'] input").sendKeys(date);
