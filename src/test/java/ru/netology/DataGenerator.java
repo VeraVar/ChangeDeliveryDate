@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class DataGenerator {
 
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     private Faker faker = new Faker(new Locale("ru"));
 
     public static String generateCity(){
@@ -19,8 +19,8 @@ public class DataGenerator {
         return cityList[city];
     }
 
-    public String generateDate(){
-        String date = formatter.format(LocalDate.now().plusDays(3));
+    public static String generateDate(int shift){
+        String date = formatter.format(LocalDate.now().plusDays(shift));
         return date;
     }
 
