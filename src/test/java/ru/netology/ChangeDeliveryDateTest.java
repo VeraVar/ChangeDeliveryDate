@@ -1,5 +1,9 @@
 package ru.netology;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
@@ -12,6 +16,11 @@ import static ru.netology.DataGenerator.generateDate;
 public class ChangeDeliveryDateTest {
 
     final DataGenerator generator = new DataGenerator();
+
+    @BeforeAll
+    static void setUpAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
 
     @Test
     void shouldChangeDeliveryDate(){
@@ -34,5 +43,10 @@ public class ChangeDeliveryDateTest {
         $(".notification_visible .button").click();
         $("[data-test-id='success-notification']").waitUntil(visible, 15000).shouldHave(text("Успешно! " +
                 "Встреча успешно запланирована на " + dateSecondMeeting));
+    }
+
+    @AfterAll
+    static void tearDownAll() {
+        SelenideLogger.removeListener("allure");
     }
 }
